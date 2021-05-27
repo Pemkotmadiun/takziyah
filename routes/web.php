@@ -13,15 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
 Auth::routes(['verify' => true]);
 
-// Route::get('/', function () {
-//     return view('admin.templates.default');
-// });
+Route::get('/', 'Landing\LandingController@index')->name('landing.index');
 
 // Route::get('/user', function () {
 //     return view('admin.user.index');
