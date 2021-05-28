@@ -290,42 +290,71 @@
           </div>
 
           <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
-
-            <form action="" method="post" role="form" class="php-email-form">
+            <!-- <form action="{{ route('laporan.store') }}" method="POST">
+              @csrf
               <div class="form-row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama Pelapor" data-rule="minlen:4" data-msg="Masukkan nama lengkap pelapor" />
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama Pelapor" data-msg="Masukkan nama lengkap pelapor" />
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Alamat Email" data-rule="email" data-msg="Masukkan nama email valid" />
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Alamat Email" data-msg="Masukkan nama email valid" />
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="no_telepon" id="no_telepon" placeholder="No Telepon" data-rule="minlen:4" data-msg="Masukkan nomor telepon" />
+                <input type="text" class="form-control" name="no_telepon" id="no_telepon" placeholder="No Telepon" data-msg="Masukkan nomor telepon" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Nama Lengkap Warga Meninggal" data-rule="minlen:4" data-msg="Masukkan nama lengkap warga meninggal" />
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Nama Lengkap Warga Meninggal" data-msg="Masukkan nama lengkap warga meninggal" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="3" data-rule="required" data-msg="Please write something for us" placeholder="Keterangan lain : Alamat Lengkap, NIK, dll"></textarea>
+                <textarea class="form-control" name="message" rows="3" data-msg="Please write something for us" placeholder="Keterangan lain : Alamat Lengkap, NIK, dll"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Laporan anda telah terkirim!</div>
-              </div>
-              <div class="text-center"><button type="submit">Kirim Laporan</button></div>
+              <input type="submit" value="Simpan" class="btn btn-primary">
+            </form> -->
+
+            <form action="{{ route('laporan.store') }}" method="POST">
+                @csrf
+                <div class="form-row">
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="nama_pelapor" class="form-control" id="nama_pelapor" placeholder="Nama Pelapor" data-rule="minlen:2" data-msg="Masukkan nama lengkap pelapor" value="{{ old('nama_pelapor') }}"/>
+                    @error('nama_pelapor')
+                      <span class="help-block">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="email" class="form-control" name="alamat_email" id="alamat_email" placeholder="Alamat Email" data-rule="email" data-msg="Masukkan nama email valid" value="{{ old('alamat_email') }}" />
+                    @error('alamat_email')
+                      <span class="help-block">{{ $message }}</span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="no_telepon" id="no_telepon" placeholder="No Telepon" data-rule="minlen:7" data-msg="Masukkan nomor telepon" value="{{ old('no_telepon') }}" />
+                  @error('no_telepon')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="nama_meninggal" id="nama_meninggal" placeholder="Nama Lengkap Warga Meninggal" data-rule="minlen:2" data-msg="Masukkan nama lengkap warga meninggal" value="{{ old('nama_meninggal') }}" />
+                  @error('nama_meninggal')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" id="keterangan" name="keterangan" rows="3" data-msg="Please write something for us" placeholder="Keterangan lain : Alamat Lengkap, NIK, dll">{{ old('nama_pelapor') }}</textarea>
+                </div>
+                    
+                <div class="form-group">
+                    <input type="submit" value="Kirim Laporan" class="btn btn-primary">
+                </group>
             </form>
-
           </div>
-
         </div>
-
       </div>
     </section><!-- End Contact Section -->
 

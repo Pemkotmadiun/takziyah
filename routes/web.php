@@ -17,9 +17,15 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/berhasil', function () {
+    return view('landing.berhasil');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'Landing\LandingController@index')->name('landing.index');
+
+Route::post('/laporan', 'LaporanController@laporan')->name('laporan.store');
 
 // Route::get('/user', function () {
 //     return view('admin.user.index');
