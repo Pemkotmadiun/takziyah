@@ -46,10 +46,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAdminRoutes();
 
-        $this->mapKepalaSekolahRoutes();
-
-        $this->mapGuruRoutes();
-
         $this->mapUserRoutes();
 
         $this->mapApiRoutes();
@@ -89,38 +85,6 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace. '\Admin')
             ->name('admin.')
             ->group(base_path('routes/admin.php'));
-    }
-
-    /**
-     * Define the "kepalasekolah" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapKepalaSekolahRoutes()
-    {
-        Route::middleware('web', 'auth', 'role:kepalasekolah')
-            ->prefix('kepalasekolah')
-            ->name('kepalasekolah.')
-            ->namespace($this->namespace. '\KepalaSekolah')
-            ->group(base_path('routes/kepalasekolah.php'));
-    }
-
-    /**
-     * Define the "guru" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapGuruRoutes()
-    {
-        Route::middleware('web', 'auth', 'role:guru')
-            ->prefix('guru')
-            ->name('guru.')
-            ->namespace($this->namespace. '\Guru')
-            ->group(base_path('routes/guru.php'));
     }
 
     /**

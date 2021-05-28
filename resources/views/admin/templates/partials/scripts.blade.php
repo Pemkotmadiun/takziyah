@@ -1,44 +1,14 @@
-<!-- Mainly scripts -->
-<script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="{{ asset('assets/js/inspinia.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pace/pace.min.js') }}"></script>
-
-    <!-- Page-Level Scripts -->
-    <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
-
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
-
-            });
-
-        });
-
-    </script>
+<script src="{{ asset('assets/admin/assets/vendors/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/popper.js/dist/umd/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/metisMenu/dist/metisMenu.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS-->
+    <script src="{{ asset('assets/admin/assets/vendors/chart.js/dist/Chart.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/jvectormap/jquery-jvectormap-us-aea-en.js') }}" type="text/javascript"></script>
+    <!-- CORE SCRIPTS-->
+    <script src="{{ asset('assets/admin/assets/js/app.min.js') }}" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS-->
+    <script src="{{ asset('assets/admin/assets/js/scripts/dashboard_1_demo.js') }}" type="text/javascript"></script>

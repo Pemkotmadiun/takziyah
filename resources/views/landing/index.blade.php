@@ -335,10 +335,10 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Pemerintah Kota Madiun
+        Pemerintah Kota Madiun
       </div>
       <div class="credits">
-        <a href="">Dinas Kependudukan dan Pencatatan Sipil</a>
+        <a href="https://capil.madiunkota.go.id/">Dinas Kependudukan dan Pencatatan Sipil</a>
       </div>
     </div>
   </footer><!-- End Footer -->
