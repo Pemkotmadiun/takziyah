@@ -27,6 +27,8 @@ Route::get('/', 'Landing\LandingController@index')->name('landing.index');
 
 Route::post('/laporan', 'LaporanController@laporan')->name('laporan.store');
 
+Route::get('/laporan/{laporan}', 'LaporanController@show')->name('laporan.show');
+
 // Route::get('/user', function () {
 //     return view('admin.user.index');
 // });

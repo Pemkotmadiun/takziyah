@@ -36,6 +36,7 @@ class LaporanController extends Controller
             'no_telepon' => 'required',
             'nama_meninggal' => 'required',
             'keterangan' => 'required',
+            'waktu_kematian' => 'required',
         ]);
 
         Laporan::create([
@@ -44,9 +45,24 @@ class LaporanController extends Controller
             'no_telepon' => $request->no_telepon,
             'nama_meninggal' => $request->nama_meninggal,
             'keterangan' => $request->keterangan,
+            'waktu_kematian' => $request->waktu_kematian,
             'link' => $shuffled,
         ]);
 
         return redirect('/berhasil');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($laporan)
+    {
+        $data = Laporan::where('link', '=', $laporan)->get();
+        return view('user.laporan', [
+            'title' => 'Data Laporan',
+            'data' => $data,
+        ]);
     }
 }

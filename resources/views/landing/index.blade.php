@@ -348,6 +348,11 @@
                 <div class="form-group">
                   <textarea class="form-control" id="keterangan" name="keterangan" rows="3" data-msg="Please write something for us" placeholder="Keterangan lain : Alamat Lengkap, NIK, dll">{{ old('nama_pelapor') }}</textarea>
                 </div>
+                <div class="form-group">
+
+                  <input type="datetime-local" class="form-control" name="waktu_kematian" id="waktu_kematian" value="" />
+                  <span><i style="color:red; font-size:12px;">* Waktu Kematian</i></span>
+                </div>
                     
                 <div class="form-group">
                     <input type="submit" value="Kirim Laporan" class="btn btn-primary">
