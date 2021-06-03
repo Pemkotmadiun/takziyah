@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddWaktuOnLaporansTable extends Migration
+class AddStatusOnPengajuanSantunansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddWaktuOnLaporansTable extends Migration
      */
     public function up()
     {
-        Schema::table('laporans', function (Blueprint $table) {
-            $table->datetime('waktu_kematian')->nullable(true);
+        Schema::table('pengajuan_santunans', function (Blueprint $table) {
+            $table->string('status', 50)->nullable(true);
         });
     }
 
@@ -25,8 +25,8 @@ class AddWaktuOnLaporansTable extends Migration
      */
     public function down()
     {
-        Schema::table('laporans', function (Blueprint $table) {
-            $table->dropColumn('waktu_kematian');
+        Schema::table('pengajuan_santunans', function (Blueprint $table) {
+            $table->dropColumn('status')->nullable(true);
         });
     }
 }

@@ -85,7 +85,7 @@
       <div class="carousel-item active">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Terima Kasih</h2>
-          <p class="animate__animated animate__fadeInUp">Terima kasih atas laporan anda, mohon ditunggu kami akan menindaklanjuti laporan anda secepat mungkin, progres dari laporan yang anda buat dapat anda lihat melalui link yang dikirimkan ke email terdaftar. Silahkan hubungi kontak diatas jika ada perlu ditanyakan.</p>
+          <p class="animate__animated animate__fadeInUp">Terima kasih atas laporan anda, mohon ditunggu kami akan menindaklanjuti laporan anda secepat mungkin, proses dari laporan yang anda buat dapat anda lihat melalui link yang dikirimkan ke email terdaftar. Silahkan hubungi kontak diatas jika ada perlu ditanyakan.</p>
           <a href="{{ route('landing.index') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Kembali</a>
         </div>
       </div>

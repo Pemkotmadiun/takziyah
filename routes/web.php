@@ -29,9 +29,9 @@ Route::post('/laporan', 'LaporanController@laporan')->name('laporan.store');
 
 Route::get('/laporan/{laporan}', 'LaporanController@show')->name('laporan.show');
 
-// Route::get('/user', function () {
-//     return view('admin.user.index');
-// });
+Route::post('/pengajuan/santunan', 'LaporanController@santunan_store')->name('pengajuan.santunan_store');
+
+Route::delete('/pengajuan/santunan/{pengajuan}', 'LaporanController@santunan_destroy')->name('pengajuan.santunan_destroy');
 
 Auth::routes();
 
