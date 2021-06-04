@@ -1,76 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.templates.default')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Takziyah Bersama</title>
-    <!-- GLOBAL MAINLY STYLES-->
-    <link href="{{ asset('assets/admin/assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/admin/assets/vendors/themify-icons/css/themify-icons.css') }}" rel="stylesheet" />
-    <!-- PLUGINS STYLES-->
-    <link href="{{ asset('assets/admin/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
-    <!-- THEME STYLES-->
-    <link href="{{ asset('assets/admin/assets/css/main.min.css') }}" rel="stylesheet" />
-    <!-- PAGE LEVEL STYLES-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-
-<body class="fixed-navbar has-animation sidebar-mini">
-    <div class="page-wrapper">
-        <!-- START HEADER-->
-        <header class="header">
-            <div class="page-brand">
-                <a class="link" href="index.html">
-                    <span class="brand">Takziyah
-                        <span class="brand-tip"> Bersama</span>
-                    </span>
-                    <span class="brand-mini">TB</span>
-                </a>
-            </div>
-            <div class="flexbox flex-1">
-                                <!-- START TOP-LEFT TOOLBAR-->
-                                <ul class="nav navbar-toolbar">
-                    <li>
-                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
-                    </li>
-                    <li>
-                        <!-- <form class="navbar-search" action="javascript:;">
-                            <div class="rel">
-                                <span class="search-icon"><i class="ti-search"></i></span>
-                                <input class="form-control" placeholder="Search here...">
-                            </div>
-                        </form> -->
-                    </li>
-                </ul>
-            </div>
-        </header>
-        
-        <nav class="page-sidebar" id="sidebar">
-            <div id="sidebar-collapse">
-                <!-- <div class="admin-block d-flex">
-                    <div>
-                        <img src="{{ asset('assets/admin/assets/img/admin-avatar.png') }}" width="45px" />
-                    </div>
-                    <div class="admin-info">
-                        <div class="font-strong">James Brown</div><small>Administrator</small></div>
-                </div> -->
-                <ul class="side-menu metismenu">
-                    </br>
-                    <li>
-                        <a class="active" href="{{ url('/') }}"><i class="sidebar-item-icon fa fa-th-large"></i>
-                            <span class="nav-label">Beranda</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
-        <div class="content-wrapper">
-            <!-- START PAGE CONTENT-->
-            <div class="page-content fade-in-up">
+@section('content')
+<div class="page-content fade-in-up">
                 <div class="alert alert-warning"><b>Informasi,</b> untuk mengajukan santunan kematian, anda dapat melengkapi dokumen di form pengajuan santuan.
                 </div>
                 <div class="row">
@@ -131,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="ibox ibox-info">
                             <div class="ibox-head">
-                                <div class="ibox-title">Pengajuan Santunan</div>
+                                <div class="ibox-title">Validasi Data dan Penerbitan</div>
                                 <div class="ibox-tools">
                                     <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
                                     <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
@@ -224,9 +155,6 @@
                                             <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_1 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 1</td>
                                             <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_2 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 2</td>
                                             <td width="13%"><a href="../../{{ $pengajuan->surat_keterangan_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> Surat Keterangan Kematian</td>
-                                            @if($pengajuan->status == 0)
-                                            <td><button href="{{ route('pengajuan.santunan_destroy', $pengajuan->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-times"></i></button></td>
-                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -269,49 +197,4 @@
                     </div>
                 </div>
             </div>
-            <!-- END PAGE CONTENT-->
-            @include('admin.templates.partials.footer')
-        </div>
-    </div>
-    
-    <!-- BEGIN PAGA BACKDROPS-->
-    <div class="sidenav-backdrop backdrop"></div>
-    <div class="preloader-backdrop">
-        <div class="page-preloader">Loading</div>
-    </div>
-    <!-- END PAGA BACKDROPS-->
-    <!-- CORE PLUGINS-->
-    @include('admin.templates.partials.scripts')
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <script>
-            $('button#delete').on('click', function(e){
-                    e.preventDefault();
-
-                    var href = $(this).attr('href');
-
-                    Swal.fire({
-                        title: 'Apakah anda yakin hapus data ini?',
-                        text: "Data yang dihapus bisa dikembalikan!",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, Hapus!'
-                        }).then((result) => {
-                        if (result.value) {
-                            document.getElementById('deleteForm').action = href;
-                            document.getElementById('deleteForm').submit();
-
-                            Swal.fire(
-                                'Berhasil!',
-                                'Data telah dihapus.',
-                                'success'
-                            )
-                        }
-                    })
-                })
-        </script>
-</body>
-
-</html>
+@endsection
