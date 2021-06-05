@@ -60,7 +60,7 @@ class LaporanController extends Controller
         Log::create([
             'user_id' => 0,
             'laporan_id' => $laporan_id,
-            'keterangan' => 'Input Laporan Kematian',
+            'jenis' => 'Input Laporan Kematian',
         ]);
 
         return redirect('/berhasil');
@@ -123,7 +123,7 @@ class LaporanController extends Controller
         Log::create([
             'user_id' => 0,
             'laporan_id' => $request->laporan_id,
-            'keterangan' => 'Input Pengajuan Santunan Kematian',
+            'jenis' => 'Input Pengajuan Santunan Kematian',
         ]);
 
         return redirect()->route('laporan.show', $request->link);

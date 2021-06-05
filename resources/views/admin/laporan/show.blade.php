@@ -78,52 +78,50 @@
                                     <input class="form-control" type="text" id="laporan_id" name="laporan_id" value="{{ $data->id }}" style="display:none">
                                     <input class="form-control" type="text" id="link" name="link" value="{{ $data->link }}" style="display:none">
                                     <div class="form-group">
-                                        <label>NIK</label>
-                                        <input class="form-control" type="text" id="nik_meninggal" name="nik_meninggal" placeholder="NIK Warga Meninggal" value="" @if(count($pengajuan) >= 1) disabled @endif>
+                                        <label>Validasi Laporan</label>
+                                        <select class="form-control" id="validasi" name="validasi">
+                                            <option value="N/A">=== Pilih ====</option>
+                                            <option value="Valid">Valid</option>
+                                            <option value="Tidak Valid">Tidak Valid</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="display:none" id="display_nik">
+                                        <label>NIK <i style="color:red; font-size:11px">*Di Data Kependudukan</i></label>
+                                        <input class="form-control" type="text" id="nik_meninggal" name="nik_meninggal" placeholder="NIK Warga Meninggal">
                                         @error('nik_meninggal')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Nama Lengkap</label>
-                                        <input class="form-control" type="text" id="nama_meninggal" name="nama_meninggal" placeholder="Nama Lengkap Warga Meninggal" @if(count($pengajuan) >= 1) disabled @endif>
+                                    <div class="form-group" style="display:none" id="display_nama">
+                                        <label>Nama Lengkap <i style="color:red; font-size:11px">*Di Data Kependudukan</i></label>
+                                        <input class="form-control" type="text" id="nama_meninggal" name="nama_meninggal" placeholder="Nama Lengkap Warga Meninggal">
                                         @error('nama_meninggal')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>KTP Warga Meninggal</label>
-                                        <input class="form-control" type="file" id="ktp_meninggal" name="ktp_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('ktp_meninggal')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>KK Warga Meninggal</label>
-                                        <input class="form-control" type="file" id="kk_meninggal" name="kk_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('kk_meninggal')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>KTP Saksi 1</label>
-                                        <input class="form-control" type="file" id="ktp_saksi_1" name="ktp_saksi_1" @if(count($pengajuan) >= 1) disabled @endif>
+                                    <div class="form-group" style="display:none" id="display_akte">
+                                        <label>Akte Kematian</label>
+                                        <input class="form-control" type="file" id="akte_kematian" name="akte_kematian" >
                                         @error('ktp_saksi_1')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>KTP Saksi 2</label>
-                                        <input class="form-control" type="file" id="ktp_saksi_2" name="ktp_saksi_2" @if(count($pengajuan) >= 1) disabled @endif>
+                                    <div class="form-group" style="display:none" id="display_ktp">
+                                        <label>KTP</label>
+                                        <input class="form-control" type="file" id="ktp" name="ktp" >
                                         @error('ktp_saksi_2')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Surat Keterangan Kematian (jika ada)</label>
-                                        <input class="form-control" type="file" id="surat_keterangan_meninggal" name="surat_keterangan_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
+                                    <div class="form-group" style="display:none" id="display_kk">
+                                        <label>KK</label>
+                                        <input class="form-control" type="file" id="kk" name="kk" >
                                     </div>
-                                    <button class="btn btn-warning btn-block" @if(count($pengajuan) >= 1) disabled @endif>Buat Pengajuan Santunan</button>
+                                    <div class="form-group" style="display:none" id="display_keterangan">
+                                        <label>Keterangan</label>
+                                        <textarea class="form-control" rows="5" placeholder="Keterangan" id="keterangan" name="keterangan"></textarea>
+                                    </div>
+                                    <button class="btn btn-warning btn-block" style="display:none" id="display_simpan">Simpan Validasi</button>
                                 </form>
                             </div>
                         </div>
@@ -150,11 +148,11 @@
                                         <tr>
                                             <td width="15%">{{ $pengajuan->nik_meninggal }}</td>
                                             <td width="20%">{{ $pengajuan->nama_meninggal }}</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Warga Meninggal</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->kk_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KK Warga Meninggal</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_1 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 1</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_2 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 2</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->surat_keterangan_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> Surat Keterangan Kematian</td>
+                                            <td width="13%"><a href="../../../{{ $pengajuan->ktp_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Warga Meninggal</td>
+                                            <td width="13%"><a href="../../../{{ $pengajuan->kk_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KK Warga Meninggal</td>
+                                            <td width="13%"><a href="../../../{{ $pengajuan->ktp_saksi_1 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 1</td>
+                                            <td width="13%"><a href="../../../{{ $pengajuan->ktp_saksi_2 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 2</td>
+                                            <td width="13%"><a href="../../../{{ $pengajuan->surat_keterangan_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> Surat Keterangan Kematian</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -162,11 +160,6 @@
                         </div>
                     </div>
                 </div>
-                <form action="" method="POST" id="deleteForm">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="Hapus" style="display: none">
-                </form>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="ibox ibox-grey">
@@ -197,4 +190,44 @@
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                        $('#validasi').change(function(e){
+                            var id = $(this).find(':selected').val();
+
+                            // console.log(id);
+
+                            if (id == 'N/A') {
+                                $('#display_nik').hide();
+                                $('#display_nama').hide();
+                                $('#display_akte').hide();
+                                $('#display_ktp').hide();
+                                $('#display_kk').hide();
+                                $('#display_keterangan').hide();
+                                $('#display_simpan').hide();
+                            }
+
+                            if (id == 'Valid') {
+                                $('#display_nik').show();
+                                $('#display_nama').show();
+                                $('#display_akte').show();
+                                $('#display_ktp').show();
+                                $('#display_kk').show();
+                                $('#display_keterangan').hide();
+                                $('#display_simpan').show();
+                            }
+
+                            if (id == 'Tidak Valid') {
+                                $('#display_nik').hide();
+                                $('#display_nama').hide();
+                                $('#display_akte').hide();
+                                $('#display_ktp').hide();
+                                $('#display_kk').hide();
+                                $('#display_keterangan').show();
+                                $('#display_simpan').show();
+                            }
+                        });
+                    });
+                </script>
 @endsection

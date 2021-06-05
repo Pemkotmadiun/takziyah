@@ -12,4 +12,5 @@
     <!-- THEME STYLES-->
     <link href="{{ asset('assets/admin/assets/css/main.min.css') }}" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>

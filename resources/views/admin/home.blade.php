@@ -70,7 +70,7 @@
                                     <tbody>
                                         @foreach($baru as $baru)
                                         <tr>
-                                            <td><a href="">{{ $baru->nama_pelapor }}</a></td>
+                                            <td><a href="{{ route('admin.laporan.show', $baru->id) }}">{{ $baru->nama_pelapor }}</a></td>
                                             <td>{{ $baru->alamat_email }}</td>
                                             <td>{{ $baru->no_telepon }}</td>
                                             <td>{{ $baru->nama_meninggal }}</td>
