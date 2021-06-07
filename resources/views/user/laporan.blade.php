@@ -199,6 +199,7 @@
                     </div>
                     @endforeach
                 </div>
+                @if(count($pengajuan) > 0)
                 <div class="row">
                     <div class="col-md-12">
                         <div class="ibox ibox-grey">
@@ -234,6 +235,39 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
+                @if(count($penerbitan) > 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox ibox-grey">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Penerbitan</div>
+                                <div class="ibox-tools">
+                                    <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"> -->
+                                        <!-- <a class="dropdown-item">option 1</a>
+                                        <a class="dropdown-item">option 2</a> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        @foreach($penerbitan as $penerbitan)
+                                        <tr>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->akte_kematian }}" target="_blank"><i class="fa fa-paperclip"></i> Akte Kematian</td>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->ktp }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Tanda Penduduk</td>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->kk }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Keluarga</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <form action="" method="POST" id="deleteForm">
                     @csrf
                     @method('DELETE')
@@ -257,7 +291,13 @@
                                     <tbody>
                                         @foreach($log as $log)
                                         <tr>
-                                            <td width="21%">{{ $log->user_id }}</td>
+                                            <td width="21%">
+                                                @if($log->user_id == 0)
+                                                    Pelapor
+                                                @else
+                                                    {{ $log->name }}
+                                                @endif
+                                            </td>
                                             <td width="28%">{{ $log->jenis }}</td>
                                             <td width="28%">{{ $log->keterangan }}</td>
                                             <td width="22%">{{ $log->created_at }}</td>

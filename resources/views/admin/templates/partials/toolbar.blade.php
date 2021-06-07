@@ -15,7 +15,7 @@
                 <!-- END TOP-LEFT TOOLBAR-->
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
-                    <li class="dropdown dropdown-inbox">
+                    <!-- <li class="dropdown dropdown-inbox">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope-o"></i>
                             <span class="badge badge-primary envelope-badge">9</span>
                         </a>
@@ -75,8 +75,8 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dropdown dropdown-notification">
+                    </li> -->
+                    <!-- <li class="dropdown dropdown-notification">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
@@ -126,14 +126,13 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="{{ asset('assets/admin/assets/img/admin-avatar.png') }}" />
                             <span></span><?php echo auth()->user()->name ?? 'Beranda'; ?><i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="profile.html"><i class="fa fa-user"></i>Profile</a>
-                            <a class="dropdown-item" href="profile.html"><i class="fa fa-cog"></i>Settings</a>
+                            <a class="dropdown-item" href=""><i class="fa fa-cog"></i>Ubah Password</a>
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

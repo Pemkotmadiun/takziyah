@@ -23,6 +23,8 @@ class LaporanController extends Controller
 
         $pengajuan = Pengajuan_santunan::where('laporan_id', '=', $laporan)->get();
 
+        $penerbitan = Penerbitan::where('laporan_id', '=', $laporan)->get();
+
         $kelurahan = Kelurahan::join('kecamatans', 'kecamatans.id', '=', 'kelurahans.kecamatan_id')
                               ->select('kelurahans.id', 'kecamatans.kecamatan', 'kelurahans.kelurahan')
                               ->orderBy('kecamatans.kecamatan', 'ASC')
@@ -39,6 +41,7 @@ class LaporanController extends Controller
             'log' => $log,
             'data' => $data,
             'pengajuan' => $pengajuan,
+            'penerbitan' => $penerbitan,
             'kelurahan' => $kelurahan,
         ]);
     }
@@ -50,32 +53,58 @@ class LaporanController extends Controller
      */
     public function validasi_store(Request $request)
     {
-        $akte_kematian = "assets/dokumen/no-image-available.png";
-        $ktp = "assets/dokumen/no-image-available.png";
-        $kk = "assets/dokumen/no-image-available.png";
+        $user_id = auth()->user()->id;
+        if($request->validasi == 'Valid'){
+            $this->validate($request, [
+                'nik_valid' => 'required',
+                'nama_lengkap_valid' => 'required',
+            ]);
 
-        if ($request->hasFile('akte_kematian')) {
-            $akte_kematian = $request->file('akte_kematian')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
+            $akte_kematian = "assets/dokumen/no-image-available.png";
+            $ktp = "assets/dokumen/no-image-available.png";
+            $kk = "assets/dokumen/no-image-available.png";
+    
+            if ($request->hasFile('akte_kematian')) {
+                $akte_kematian = $request->file('akte_kematian')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
+            }
+    
+            if ($request->hasFile('ktp')) {
+                $ktp = $request->file('ktp')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
+            }
+    
+            if ($request->hasFile('kk')) {
+                $kk = $request->file('kk')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
+            }
+    
+            Penerbitan::create([
+                'laporan_id' => $request->laporan_id,
+                'nik_valid' => $request->nik_valid,
+                'nama_lengkap_valid' => $request->nama_lengkap_valid,
+                'akte_kematian' => $akte_kematian,
+                'ktp' => $ktp,
+                'kk' => $kk,
+            ]);
+
+            Log::create([
+                'user_id' => $user_id,
+                'laporan_id' => $request->laporan_id,
+                'jenis' => 'Validasi Dukcapil : Diterima',
+                'keterangan' => 'Akte Kematian Diterbitkan',
+            ]);
+
+            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '1']);
+        }else
+        if($request->validasi == 'Tidak Valid'){
+            Log::create([
+                'user_id' => $user_id,
+                'laporan_id' => $request->laporan_id,
+                'jenis' => 'Validasi Dukcapil : Ditolak',
+                'keterangan' => $request->keterangan,
+            ]);
+
+            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '0']);
         }
 
-        if ($request->hasFile('ktp')) {
-            $ktp = $request->file('ktp')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
-        }
-
-        if ($request->hasFile('kk')) {
-            $kk = $request->file('kk')->store('assets/dokumen/'.$request->laporan_id.'/penerbitan');
-        }
-
-        Pengajuan_santunan::create([
-            
-        ]);
-
-        Log::create([
-            'user_id' => 0,
-            'laporan_id' => $request->laporan_id,
-            'keterangan' => 'Input Pengajuan Santunan Kematian',
-        ]);
-
-        return redirect()->route('laporan.show', $request->link);
+        return redirect()->route('admin.laporan.show', $request->laporan_id);
     }
 }

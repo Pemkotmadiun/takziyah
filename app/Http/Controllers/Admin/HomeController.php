@@ -10,10 +10,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $baru = Laporan::where('status', '=', '0')->orderBy('created_at', 'DESC')->get();
+        $total = Laporan::get();
+        $baru = Laporan::where('validasi_dukcapil', 'is', 'null')->orderBy('created_at', 'DESC')->get();
+        $ditolak = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
+        $diterima = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
         return view('Admin.home', [
             'title' => 'Dashboard',
+            'total' => $total,
             'baru' => $baru,
+            'ditolak' => $ditolak,
+            'diterima' => $diterima,
         ]);
     }
 }

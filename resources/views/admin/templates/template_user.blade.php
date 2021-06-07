@@ -8,7 +8,7 @@
         <!-- START HEADER-->
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="index.html">
+                <a class="link" href="{{ route('admin.dashboard') }}">
                     <span class="brand">Takziyah
                         <span class="brand-tip"> Bersama</span>
                     </span>

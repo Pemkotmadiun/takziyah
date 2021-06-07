@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="page-content fade-in-up">
-                <div class="alert alert-warning"><b>Informasi,</b> untuk mengajukan santunan kematian, anda dapat melengkapi dokumen di form pengajuan santuan.
-                </div>
+                <!-- <div class="alert alert-warning"><b>Informasi,</b> untuk mengajukan santunan kematian, anda dapat melengkapi dokumen di form pengajuan santuan.
+                </div> -->
                 <div class="row">
                     @foreach($data as $data)
                     <div class="col-md-6">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="ibox-body">
-                                <form action="{{ route('pengajuan.santunan_store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('admin.validasi.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="text" id="laporan_id" name="laporan_id" value="{{ $data->id }}" style="display:none">
                                     <input class="form-control" type="text" id="link" name="link" value="{{ $data->link }}" style="display:none">
@@ -87,31 +87,25 @@
                                     </div>
                                     <div class="form-group" style="display:none" id="display_nik">
                                         <label>NIK <i style="color:red; font-size:11px">*Di Data Kependudukan</i></label>
-                                        <input class="form-control" type="text" id="nik_meninggal" name="nik_meninggal" placeholder="NIK Warga Meninggal">
-                                        @error('nik_meninggal')
+                                        <input class="form-control" type="text" id="nik_valid" name="nik_valid" placeholder="NIK Warga Meninggal">
+                                        @error('nik_valid')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
                                     <div class="form-group" style="display:none" id="display_nama">
                                         <label>Nama Lengkap <i style="color:red; font-size:11px">*Di Data Kependudukan</i></label>
-                                        <input class="form-control" type="text" id="nama_meninggal" name="nama_meninggal" placeholder="Nama Lengkap Warga Meninggal">
-                                        @error('nama_meninggal')
+                                        <input class="form-control" type="text" id="nama_lengkap_valid" name="nama_lengkap_valid" placeholder="Nama Lengkap Warga Meninggal">
+                                        @error('nama_lengkap_valid')
                                             <span class="help-block"><i style="color:red">*Harus diisi</i></span>
                                         @enderror
                                     </div>
                                     <div class="form-group" style="display:none" id="display_akte">
                                         <label>Akte Kematian</label>
                                         <input class="form-control" type="file" id="akte_kematian" name="akte_kematian" >
-                                        @error('ktp_saksi_1')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
                                     </div>
                                     <div class="form-group" style="display:none" id="display_ktp">
                                         <label>KTP</label>
                                         <input class="form-control" type="file" id="ktp" name="ktp" >
-                                        @error('ktp_saksi_2')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
                                     </div>
                                     <div class="form-group" style="display:none" id="display_kk">
                                         <label>KK</label>
@@ -128,9 +122,10 @@
                     </div>
                     @endforeach
                 </div>
+                @if(count($pengajuan) > 0)
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="ibox ibox-grey">
+                        <div class="ibox ibox-warning">
                             <div class="ibox-head">
                                 <div class="ibox-title">File Pengajuan Santunan</div>
                                 <div class="ibox-tools">
@@ -160,6 +155,38 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
+                @if(count($penerbitan) > 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox ibox-warning">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Penerbitan</div>
+                                <div class="ibox-tools">
+                                    <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                                    <!-- <div class="dropdown-menu dropdown-menu-right"> -->
+                                        <!-- <a class="dropdown-item">option 1</a>
+                                        <a class="dropdown-item">option 2</a> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        @foreach($penerbitan as $penerbitan)
+                                        <tr>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->akte_kematian }}" target="_blank"><i class="fa fa-paperclip"></i> Akte Kematian</td>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->ktp }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Tanda Penduduk</td>
+                                            <td width="33%"><a href="../../../{{ $penerbitan->kk }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Keluarga</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="ibox ibox-grey">
@@ -178,7 +205,13 @@
                                     <tbody>
                                         @foreach($log as $log)
                                         <tr>
-                                            <td width="21%">{{ $log->user_id }}</td>
+                                            <td width="21%">
+                                                @if($log->user_id == 0)
+                                                    Pelapor
+                                                @else
+                                                    {{ $log->name }}
+                                                @endif
+                                            </td>
                                             <td width="28%">{{ $log->jenis }}</td>
                                             <td width="28%">{{ $log->keterangan }}</td>
                                             <td width="22%">{{ $log->created_at }}</td>

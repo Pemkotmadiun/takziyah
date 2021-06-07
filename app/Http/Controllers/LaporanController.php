@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\log;
 use App\Laporan;
+use App\Penerbitan;
 use App\Pengajuan_santunan;
 
 class LaporanController extends Controller
@@ -142,6 +143,8 @@ class LaporanController extends Controller
             $laporan_id = $data_content->id;
         }
 
+        $penerbitan = Penerbitan::where('laporan_id', '=', $laporan_id)->get();
+
         $pengajuan = Pengajuan_santunan::where('laporan_id', '=', $laporan_id)->get();
         $log = Log::select('logs.*', 'users.name')
                    ->leftjoin('users', 'users.id', '=', 'logs.user_id')
@@ -153,6 +156,7 @@ class LaporanController extends Controller
             'log' => $log,
             'data' => $data,
             'pengajuan' => $pengajuan,
+            'penerbitan' => $penerbitan,
         ]);
     }
 
