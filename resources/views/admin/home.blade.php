@@ -8,7 +8,7 @@
                             <div class="ibox-body">
                                 <h2 class="m-b-5 font-strong">{{ count($total) }}</h2>
                                 <div class="m-b-5">TOTAL LAPORAN</div><i class="ti-shopping-cart widget-stat-icon"></i>
-                                <div><a href="" style="color: white"><i class="fa fa-level-up m-r-5" ></i><small>Klik untuk detail</small></a></div>
+                                <div><a href="{{ route('admin.laporan.keseluruhan') }}" style="color: white"><i class="fa fa-level-up m-r-5" ></i><small>Klik untuk detail</small></a></div>
                             </div>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
                             <div class="ibox-body">
                                 <h2 class="m-b-5 font-strong">{{ count($baru) }}</h2>
                                 <div class="m-b-5">BARU</div><i class="ti-bar-chart widget-stat-icon"></i>
-                                <div><a href="" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
+                                <div><a href="{{ route('admin.laporan.baru') }}" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             <div class="ibox-body">
                                 <h2 class="m-b-5 font-strong">{{ count($diterima) }}</h2>
                                 <div class="m-b-5">DITERIMA</div><i class="fa fa-money widget-stat-icon"></i>
-                                <div><a href="" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
+                                <div><a href="{{ route('admin.laporan.diterima') }}" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <div class="ibox-body">
                                 <h2 class="m-b-5 font-strong">{{ count($ditolak) }}</h2>
                                 <div class="m-b-5">DITOLAK</div><i class="ti-user widget-stat-icon"></i>
-                                <div><a href="" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
+                                <div><a href="{{ route('admin.laporan.ditolak') }}" style="color: white"><i class="fa fa-level-up m-r-5"></i><small>Klik untuk detail</small></a></div>
                             </div>
                         </div>
                     </div>

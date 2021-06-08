@@ -21,6 +21,13 @@ class LaporanController extends Controller
     {
         $data = Laporan::where('id', '=', $laporan)->get();
 
+        foreach ($data as $data_validasi) {
+            $validasi_dukcapil = $data_validasi->validasi_dukcapil;
+            $validasi_dinsos = $data_validasi->validasi_dinsos;
+            $keterangan_validasi_dukcapil = $data_validasi->keterangan_validasi_dukcapil;
+            $keterangan_validasi_dinsos = $data_validasi->keterangan_validasi_dinsos;
+        }
+
         $pengajuan = Pengajuan_santunan::where('laporan_id', '=', $laporan)->get();
 
         $penerbitan = Penerbitan::where('laporan_id', '=', $laporan)->get();
@@ -43,6 +50,70 @@ class LaporanController extends Controller
             'pengajuan' => $pengajuan,
             'penerbitan' => $penerbitan,
             'kelurahan' => $kelurahan,
+            'validasi_dukcapil' => $validasi_dukcapil,
+            'validasi_dinsos' => $validasi_dinsos,
+            'keterangan_validasi_dukcapil' => $keterangan_validasi_dukcapil,
+            'keterangan_validasi_dinsos' => $keterangan_validasi_dinsos,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function keseluruhan()
+    {
+        $data = Laporan::orderBy('created_at', 'DESC')->get();
+
+        return view('admin.laporan.data', [
+            'title' => 'Laporan Keseluruhan',
+            'data' => $data,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function baru()
+    {
+        $data = Laporan::where('validasi_dukcapil', '=', 'null')->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.laporan.data', [
+            'title' => 'Laporan Baru',
+            'data' => $data,
+        ]);
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function diterima()
+    {
+        $data = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.laporan.data', [
+            'title' => 'Laporan Diterima',
+            'data' => $data,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ditolak()
+    {
+        $data = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.laporan.data', [
+            'title' => 'Laporan Ditolak',
+            'data' => $data,
         ]);
     }
 

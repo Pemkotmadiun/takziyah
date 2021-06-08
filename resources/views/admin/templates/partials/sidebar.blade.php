@@ -15,28 +15,28 @@
                         </a>
                     </li>
                     <li class="heading">LAPORAN</li>
-                    <li>
-                        <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <li class="{{ Request::is('*laporan/keseluruhan*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.laporan.keseluruhan') }}"><i class="sidebar-item-icon fa fa-bookmark"></i>
                             <span class="nav-label">Keseluruhan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:;"><i class="sidebar-item-icon fa fa-edit"></i>
+                    <li class="{{ Request::is('*laporan/baru*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.laporan.baru') }}"><i class="sidebar-item-icon fa fa-edit"></i>
                             <span class="nav-label">Baru</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
+                    <li class="{{ Request::is('*laporan/diterima*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.laporan.diterima') }}"><i class="sidebar-item-icon fa fa-table"></i>
                             <span class="nav-label">Diterima</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:;"><i class="sidebar-item-icon fa fa-bar-chart"></i>
+                    <li class="{{ Request::is('*laporan/ditolak*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.laporan.ditolak') }}"><i class="sidebar-item-icon fa fa-bar-chart"></i>
                             <span class="nav-label">Ditolak</span>
                         </a>
                     </li>
                     <li class="heading">PENGATURAN</li>
-                    <li>
+                    <li class="{{ Request::is('*/profil*') ? 'active' : '' }}">
                         <a href="{{ route('admin.profil.index') }}"><i class="sidebar-item-icon fa fa-gear"></i>
                             <span class="nav-label">Ubah Password</span>
                         </a>

@@ -73,6 +73,7 @@
                                 </div>
                             </div>
                             <div class="ibox-body">
+                                @if( $validasi_dukcapil == 'null' )
                                 <form action="{{ route('admin.validasi.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="text" id="laporan_id" name="laporan_id" value="{{ $data->id }}" style="display:none">
@@ -117,6 +118,24 @@
                                     </div>
                                     <button class="btn btn-warning btn-block" style="display:none" id="display_simpan">Simpan Validasi</button>
                                 </form>
+
+                                @elseif( $validasi_dukcapil == '0' )
+                                    <div class="alert alert-warning alert-dismissable fade show">
+                                        <h4>Sudah Divalidasi!</h4>
+                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Ditolak</b></p>
+                                        <p>
+                                            <b>Keterangan : </b>{{ $keterangan_validasi_dukcapil }}
+                                        </p>
+                                    </div>
+                                @elseif( $validasi_dukcapil == '1' )
+                                    <div class="alert alert-success alert-dismissable fade show">
+                                    <h4>Sudah Divalidasi!</h4>
+                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Diterima</b></p>
+                                        <p>
+                                            <b>Keterangan : </b>{{ $keterangan_validasi_dukcapil }}
+                                        </p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -125,7 +144,7 @@
                 @if(count($pengajuan) > 0)
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="ibox ibox-warning">
+                        <div class="ibox ibox-grey">
                             <div class="ibox-head">
                                 <div class="ibox-title">File Pengajuan Santunan</div>
                                 <div class="ibox-tools">
@@ -160,7 +179,7 @@
                 @if(count($penerbitan) > 0)
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="ibox ibox-warning">
+                        <div class="ibox ibox-grey">
                             <div class="ibox-head">
                                 <div class="ibox-title">Penerbitan</div>
                                 <div class="ibox-tools">

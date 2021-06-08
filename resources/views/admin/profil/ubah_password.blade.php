@@ -4,8 +4,8 @@
     <div class="page-content fade-in-up">
         <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-            <h4><i class="icon fa fa-folder-open-o"></i> <a href="" style="text-decoration:none"></a></h4>
-            Sistem Informasi Dinas Perdagangan Kota Madiun.
+            <h4><i class="icon fa fa-folder-open-o"></i> {{ $title }}</h4>
+            Takziyah Bersama
         </div>
 
         <div class="ibox ibox-info">

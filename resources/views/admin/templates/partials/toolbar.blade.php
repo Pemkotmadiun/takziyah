@@ -132,7 +132,7 @@
                             <img src="{{ asset('assets/admin/assets/img/admin-avatar.png') }}" />
                             <span></span><?php echo auth()->user()->name ?? 'Beranda'; ?><i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href=""><i class="fa fa-cog"></i>Ubah Password</a>
+                            <a class="dropdown-item" href="{{ route('admin.profil.index') }}"><i class="fa fa-cog"></i>Ubah Password</a>
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

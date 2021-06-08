@@ -1,4 +1,4 @@
-<script src="{{ asset('assets/admin/assets/vendors/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/assets/vendors/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/assets/vendors/popper.js/dist/umd/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/assets/vendors/metisMenu/dist/metisMenu.min.js') }}" type="text/javascript"></script>
