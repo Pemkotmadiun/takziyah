@@ -14,4 +14,7 @@
     <!-- PAGE LEVEL STYLES-->
     <link href="{{ asset('assets/css/pages/mailbox.css') }}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="icon">
+    <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="apple-touch-icon">
 </head>

@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ asset('assets/login/assets/css/login.css') }}">
+
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="icon">
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="apple-touch-icon">
 </head>
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">

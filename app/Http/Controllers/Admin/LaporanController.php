@@ -173,7 +173,10 @@ class LaporanController extends Controller
                 'keterangan' => $request->keterangan,
             ]);
 
-            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '0']);
+            date_default_timezone_set("Asia/Jakarta");
+            $waktu_validasi = date("Y-m-d H:i:s");
+
+            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '0', 'waktu_validasi_dukcapil' => $waktu_validasi]);
         }
 
         return redirect()->route('admin.laporan.show', $request->laporan_id);

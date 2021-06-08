@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/landing/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/landing/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="icon">
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -157,12 +157,17 @@
         <div class="row content">
           <div class="col-lg-12">
             <p>
-              Peraturan Kota Madiun mengenai siapa saja yang dapat mengajukan santunan kematian :
+              Berikut adalah persyaratan untuk mengajukan santunan kematian :
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> ========================================================</li>
-              <li><i class="ri-check-double-line"></i> ========================================================</li>
-              <li><i class="ri-check-double-line"></i> ========================================================</li>
+              <li><i class="ri-check-double-line"></i> Surat Permohonan Santunan Kematian dengan Mengetahui Ketua RT (ASLI)<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy KTP-EL Masyarakat yang Meninggal<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy Akta Kematian atau Surat Keterangan Lahir Mati<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy KTP-EL Ahli Waris<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy KK Ahli Waris<li>
+              <li><i class="ri-check-double-line"></i> Surat Pernyataan Ahli Waris dengan Materai 10.000 (ASLI)<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL<li>
+              <li><i class="ri-check-double-line"></i> Foto Copy Rekening Atas Nama Ahli Waris<li>
             </ul>
           </div>
           <!-- <div class="col-lg-6 pt-4 pt-lg-0">
