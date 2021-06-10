@@ -79,7 +79,7 @@ class LaporanController extends Controller
      */
     public function baru()
     {
-        $data = Laporan::where('validasi_dukcapil', '=', 'null')->orderBy('created_at', 'DESC')->get();
+        $data = Laporan::whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
 
         return view('admin.laporan.data', [
             'title' => 'Laporan Baru',

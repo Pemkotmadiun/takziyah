@@ -74,50 +74,64 @@ class LaporanController extends Controller
      */
     public function santunan_store(Request $request)
     {
-        $ktp_meninggal = "assets/dokumen/no-image-available.png";
-        $kk_meninggal = "assets/dokumen/no-image-available.png";
-        $ktp_saksi_1 = "assets/dokumen/no-image-available.png";
-        $ktp_saksi_2 = "assets/dokumen/no-image-available.png";
-        $surat_keterangan_meninggal = "assets/dokumen/no-image-available.png";
+        $surat_permohonan_santunan = "assets/dokumen/no-image-available.png";
+        $ktp_masyarakat_meninggal = "assets/dokumen/no-image-available.png";
+        $akta_kematian = "assets/dokumen/no-image-available.png";
+        $ktp_ahli_waris = "assets/dokumen/no-image-available.png";
+        $kk_ahli_waris = "assets/dokumen/no-image-available.png";
+        $surat_pernyataan_ahli_waris = "assets/dokumen/no-image-available.png";
+        $akta_kelahiran_ahli_waris = "assets/dokumen/no-image-available.png";
+        $rekening_ahli_waris = "assets/dokumen/no-image-available.png";
 
-        if ($request->hasFile('ktp_meninggal')) {
-            $ktp_meninggal = $request->file('ktp_meninggal')->store('assets/dokumen/'.$request->laporan_id);
+        if ($request->hasFile('surat_permohonan_santunan')) {
+            $surat_permohonan_santunan = $request->file('surat_permohonan_santunan')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
         }
 
-        if ($request->hasFile('kk_meninggal')) {
-            $kk_meninggal = $request->file('kk_meninggal')->store('assets/dokumen/'.$request->laporan_id);
+        if ($request->hasFile('ktp_masyarakat_meninggal')) {
+            $ktp_masyarakat_meninggal = $request->file('ktp_masyarakat_meninggal')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
         }
 
-        if ($request->hasFile('ktp_saksi_1')) {
-            $ktp_saksi_1 = $request->file('ktp_saksi_1')->store('assets/dokumen/'.$request->laporan_id);
+        if ($request->hasFile('akta_kematian')) {
+            $akta_kematian = $request->file('akta_kematian')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
         }
 
-        if ($request->hasFile('ktp_saksi_2')) {
-            $ktp_saksi_2 = $request->file('ktp_saksi_2')->store('assets/dokumen/'.$request->laporan_id);
+        if ($request->hasFile('ktp_ahli_waris')) {
+            $ktp_ahli_waris = $request->file('ktp_ahli_waris')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
         }
 
-        if ($request->hasFile('surat_keterangan_meninggal')) {
-            $surat_keterangan_meninggal = $request->file('surat_keterangan_meninggal')->store('assets/dokumen/'.$request->laporan_id);
+        if ($request->hasFile('kk_ahli_waris')) {
+            $kk_ahli_waris = $request->file('kk_ahli_waris')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
+        }
+
+        if ($request->hasFile('surat_pernyataan_ahli_waris')) {
+            $surat_pernyataan_ahli_waris = $request->file('surat_pernyataan_ahli_waris')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
+        }
+
+        if ($request->hasFile('akta_kelahiran_ahli_waris')) {
+            $akta_kelahiran_ahli_waris = $request->file('akta_kelahiran_ahli_waris')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
+        }
+
+        if ($request->hasFile('rekening_ahli_waris')) {
+            $rekening_ahli_waris = $request->file('rekening_ahli_waris')->store('assets/dokumen/'.$request->laporan_id.'/pengajuan');
         }
 
         $this->validate($request, [
             'nik_meninggal' => 'required',
             'nama_meninggal' => 'required',
-            'ktp_meninggal' => 'required',
-            'kk_meninggal' => 'required',
-            'ktp_saksi_1' => 'required',
-            'ktp_saksi_2' => 'required',
         ]);
 
         Pengajuan_santunan::create([
             'laporan_id' => $request->laporan_id,
             'nik_meninggal' => $request->nik_meninggal,
             'nama_meninggal' => $request->nama_meninggal,
-            'ktp_meninggal' => $ktp_meninggal,
-            'kk_meninggal' => $kk_meninggal,
-            'ktp_saksi_1' => $ktp_saksi_1,
-            'ktp_saksi_2' => $ktp_saksi_2,
-            'surat_keterangan_meninggal' => $surat_keterangan_meninggal,
+            'surat_permohonan_santunan' => $surat_permohonan_santunan,
+            'ktp_masyarakat_meninggal' => $ktp_masyarakat_meninggal,
+            'akta_kematian' => $akta_kematian,
+            'ktp_ahli_waris' => $ktp_ahli_waris,
+            'kk_ahli_waris' => $kk_ahli_waris,
+            'surat_pernyataan_ahli_waris' => $surat_pernyataan_ahli_waris,
+            'akta_kelahiran_ahli_waris' => $akta_kelahiran_ahli_waris,
+            'rekening_ahli_waris' => $rekening_ahli_waris,
             'status' => '0',
         ]);
 
@@ -177,7 +191,7 @@ class LaporanController extends Controller
         Log::create([
             'user_id' => 0,
             'laporan_id' => $pengajuan->laporan_id,
-            'keterangan' => 'Hapus Pengajuan Santunan Kematian',
+            'jenis' => 'Hapus Pengajuan Santunan Kematian',
         ]);
 
         $pengajuan->delete();

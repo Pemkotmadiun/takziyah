@@ -142,6 +142,163 @@
                                 </div>
                             </div>
                             <div class="ibox-body">
+                            @if(count($pengajuan) >= 1)
+                                <div class="alert alert-success alert-dismissable fade show">
+                                    <h4>Pengajuan Santunan Berhasil !</h4>
+                                    <p>Pengajuan santunan telah dilakukan, mohon tunggu untuk validasi dari OPD terkait. Informasi mengenai validasi dapat anda lihat pada form berikut pada tabel dibawah.</p>
+                                </div>
+
+                                <table class="table table-bordered">
+                                    @foreach($pengajuan as $pengajuan)
+                                    <thead class="thead-default">
+                                        <tr>
+                                            <th width="1%">#</th>
+                                            <th width="45%">Dokumen</th>
+                                            <th width="45%">Keterangan</th>
+                                            <th width="9%">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                Surat Permohonan Santunan Kematian 
+                                                <a href="../../{{ $pengajuan->surat_permohonan_santunan }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_surat_permohonan_santunan }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_surat_permohonan_santunan == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_surat_permohonan_santunan == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_surat_permohonan_santunan == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                            KTP-EL Masyarakat yang Meninggal 
+                                                <a href="../../{{ $pengajuan->ktp_masyarakat_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_surat_permohonan_santunan }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_ktp_masyarakat_meninggal == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_ktp_masyarakat_meninggal == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_ktp_masyarakat_meninggal == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                            Akta Kematian atau Surat Keterangan Lahir Mati 
+                                                <a href="../../{{ $pengajuan->akta_kematian }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_akta_kematian }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_akta_kematian == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_akta_kematian == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_akta_kematian == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>
+                                            KTP-EL Ahli Waris 
+                                                <a href="../../{{ $pengajuan->ktp_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_ktp_ahli_waris }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_ktp_ahli_waris == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_ktp_ahli_waris == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_ktp_ahli_waris == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>
+                                            KK Ahli Waris 
+                                                <a href="../../{{ $pengajuan->kk_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_kk_ahli_waris }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_kk_ahli_waris == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_kk_ahli_waris == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_kk_ahli_waris == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>
+                                            Surat Pernyataan Ahli Waris 
+                                                <a href="../../{{ $pengajuan->surat_pernyataan_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_surat_pernyataan_ahli_waris }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_surat_pernyataan_ahli_waris == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_surat_pernyataan_ahli_waris == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_surat_pernyataan_ahli_waris == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>
+                                            Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL 
+                                                <a href="../../{{ $pengajuan->akta_kelahiran_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_akta_kelahiran_ahli_waris }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_akta_kelahiran_ahli_waris == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_akta_kelahiran_ahli_waris == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_akta_kelahiran_ahli_waris == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>
+                                            Rekening Atas Nama Ahli Waris 
+                                                <a href="../../{{ $pengajuan->rekening_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen
+                                            </td>
+                                            <td>{{ $pengajuan->keterangan_rekening_ahli_waris }}</td>
+                                            <td>
+                                                @if($pengajuan->validasi_rekening_ahli_waris == '')
+                                                <span class="badge badge-warning">Proses</span>
+                                                @elseif($pengajuan->validasi_rekening_ahli_waris == 0)
+                                                <span class="badge badge-danger">Ditolak</span>
+                                                @elseif($pengajuan->validasi_rekening_ahli_waris == 1)
+                                                <span class="badge badge-success">Diterima</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    @endforeach
+                                </table>
+                            @else
                                 <form action="{{ route('pengajuan.santunan_store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="text" id="laporan_id" name="laporan_id" value="{{ $data->id }}" style="display:none">
@@ -161,81 +318,45 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>KTP Warga Meninggal</label>
-                                        <input class="form-control" type="file" id="ktp_meninggal" name="ktp_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('ktp_meninggal')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
+                                        <label>Surat Permohonan Santunan Kematian dengan Mengetahui Ketua RT (ASLI)</label>
+                                        <input class="form-control" type="file" id="surat_permohonan_santunan" name="surat_permohonan_santunan" @if(count($pengajuan) >= 1) disabled @endif>
                                     </div>
                                     <div class="form-group">
-                                        <label>KK Warga Meninggal</label>
-                                        <input class="form-control" type="file" id="kk_meninggal" name="kk_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('kk_meninggal')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
+                                        <label>KTP-EL Masyarakat yang Meninggal</label>
+                                        <input class="form-control" type="file" id="ktp_masyarakat_meninggal" name="ktp_masyarakat_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
                                     </div>
                                     <div class="form-group">
-                                        <label>KTP Saksi 1</label>
-                                        <input class="form-control" type="file" id="ktp_saksi_1" name="ktp_saksi_1" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('ktp_saksi_1')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
+                                        <label>Akta Kematian atau Surat Keterangan Lahir Mati</label>
+                                        <input class="form-control" type="file" id="akta_kematian" name="akta_kematian" @if(count($pengajuan) >= 1) disabled @endif>
                                     </div>
                                     <div class="form-group">
-                                        <label>KTP Saksi 2</label>
-                                        <input class="form-control" type="file" id="ktp_saksi_2" name="ktp_saksi_2" @if(count($pengajuan) >= 1) disabled @endif>
-                                        @error('ktp_saksi_2')
-                                            <span class="help-block"><i style="color:red">*Harus diisi</i></span>
-                                        @enderror
+                                        <label>KTP-EL Ahli Waris</label>
+                                        <input class="form-control" type="file" id="ktp_ahli_waris" name="ktp_ahli_waris" @if(count($pengajuan) >= 1) disabled @endif>
                                     </div>
                                     <div class="form-group">
-                                        <label>Surat Keterangan Kematian (jika ada)</label>
-                                        <input class="form-control" type="file" id="surat_keterangan_meninggal" name="surat_keterangan_meninggal" @if(count($pengajuan) >= 1) disabled @endif>
+                                        <label>KK Ahli Waris</label>
+                                        <input class="form-control" type="file" id="kk_ahli_waris" name="kk_ahli_waris" @if(count($pengajuan) >= 1) disabled @endif>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Surat Pernyataan Ahli Waris dengan Materai 10.000</label>
+                                        <input class="form-control" type="file" id="surat_pernyataan_ahli_waris" name="surat_pernyataan_ahli_waris" @if(count($pengajuan) >= 1) disabled @endif>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL</label>
+                                        <input class="form-control" type="file" id="akta_kelahiran_ahli_waris" name="akta_kelahiran_ahli_waris" @if(count($pengajuan) >= 1) disabled @endif>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rekening Atas Nama Ahli Waris</label>
+                                        <input class="form-control" type="file" id="rekening_ahli_waris" name="rekening_ahli_waris" @if(count($pengajuan) >= 1) disabled @endif>
                                     </div>
                                     <button class="btn btn-warning btn-block" @if(count($pengajuan) >= 1) disabled @endif>Buat Pengajuan Santunan</button>
                                 </form>
+                            @endif
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                @if(count($pengajuan) > 0)
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ibox ibox-grey">
-                            <div class="ibox-head">
-                                <div class="ibox-title">File Pengajuan Santunan</div>
-                                <div class="ibox-tools">
-                                    <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
-                                    <!-- <div class="dropdown-menu dropdown-menu-right"> -->
-                                        <!-- <a class="dropdown-item">option 1</a>
-                                        <a class="dropdown-item">option 2</a> -->
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        @foreach($pengajuan as $pengajuan)
-                                        <tr>
-                                            <td width="15%">{{ $pengajuan->nik_meninggal }}</td>
-                                            <td width="20%">{{ $pengajuan->nama_meninggal }}</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Warga Meninggal</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->kk_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> KK Warga Meninggal</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_1 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 1</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->ktp_saksi_2 }}" target="_blank"><i class="fa fa-paperclip"></i> KTP Saksi 2</td>
-                                            <td width="13%"><a href="../../{{ $pengajuan->surat_keterangan_meninggal }}" target="_blank"><i class="fa fa-paperclip"></i> Surat Keterangan Kematian</td>
-                                            @if($pengajuan->status == 0)
-                                            <td><button href="{{ route('pengajuan.santunan_destroy', $pengajuan->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-times"></i></button></td>
-                                            @endif
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                        </div>
-                    </div>
-                </div>
-                @endif
 
                 @if(count($penerbitan) > 0)
                 <div class="row">
@@ -256,9 +377,9 @@
                                     <tbody>
                                         @foreach($penerbitan as $penerbitan)
                                         <tr>
-                                            <td width="33%"><a href="../../../{{ $penerbitan->akte_kematian }}" target="_blank"><i class="fa fa-paperclip"></i> Akte Kematian</td>
-                                            <td width="33%"><a href="../../../{{ $penerbitan->ktp }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Tanda Penduduk</td>
-                                            <td width="33%"><a href="../../../{{ $penerbitan->kk }}" target="_blank"><i class="fa fa-paperclip"></i> Kartu Keluarga</td>
+                                            <td width="33%">Akte Kematian <a href="../../{{ $penerbitan->akte_kematian }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i></td>
+                                            <td width="33%">Kartu Tanda Penduduk <a href="../../{{ $penerbitan->ktp }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen</td>
+                                            <td width="33%">Kartu Keluarga <a href="../../{{ $penerbitan->kk }}" target="_blank"><i class="fa fa-paperclip"></i> Dokumen</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

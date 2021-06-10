@@ -35,7 +35,7 @@
                             <td>{{ $data->nama_meninggal }}</td>
                             <td>{{ $data->created_at }}</td>
                             <td>
-                                @if($data->validasi_dukcapil == 'null')
+                                @if(empty($data->validasi_dukcapil))
                                     <span class="badge badge-info">Baru</span>
                                 @elseif($data->validasi_dukcapil == '0')
                                     <span class="badge badge-danger">Ditolak</span>

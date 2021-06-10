@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $total = Laporan::get();
-        $baru = Laporan::where('validasi_dukcapil', 'is', 'null')->orderBy('created_at', 'DESC')->get();
+        $baru = Laporan::whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
         $ditolak = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
         $diterima = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
         return view('Admin.home', [
