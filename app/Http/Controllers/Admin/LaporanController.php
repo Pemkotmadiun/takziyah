@@ -26,6 +26,7 @@ class LaporanController extends Controller
             $validasi_dinsos = $data_validasi->validasi_dinsos;
             $keterangan_validasi_dukcapil = $data_validasi->keterangan_validasi_dukcapil;
             $keterangan_validasi_dinsos = $data_validasi->keterangan_validasi_dinsos;
+            $id = $data_validasi->id;
         }
 
         $pengajuan = Pengajuan_santunan::where('laporan_id', '=', $laporan)->get();
@@ -43,9 +44,17 @@ class LaporanController extends Controller
                    ->where('laporan_id', '=', $laporan)
                    ->orderBy('created_at', 'DESC')->get();
 
-        return view('admin.laporan.show', [
+        if(auth()->user()->level == 3){
+            $file = 'admin.laporan.show';
+        }else
+        if (auth()->user()->level == 4) {
+            $file = 'admin.laporan.show_dinsos';
+        }
+
+        return view($file, [
             'title' => 'Detail Laporan Kematian',
             'log' => $log,
+            'id' => $id,
             'data' => $data,
             'pengajuan' => $pengajuan,
             'penerbitan' => $penerbitan,
@@ -79,7 +88,12 @@ class LaporanController extends Controller
      */
     public function baru()
     {
-        $data = Laporan::whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
+        if(auth()->user()->level == 3){
+            $data = Laporan::whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
+        }else
+        if (auth()->user()->level == 4) {
+            $data = Laporan::whereNull('validasi_dinsos')->orderBy('created_at', 'DESC')->get();
+        }
 
         return view('admin.laporan.data', [
             'title' => 'Laporan Baru',
@@ -94,7 +108,12 @@ class LaporanController extends Controller
      */
     public function diterima()
     {
-        $data = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
+        if(auth()->user()->level == 3){
+            $data = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
+        }else
+        if (auth()->user()->level == 4) {
+            $data = Laporan::where('validasi_dinsos', '=', '1')->orderBy('created_at', 'DESC')->get();
+        }
 
         return view('admin.laporan.data', [
             'title' => 'Laporan Diterima',
@@ -109,7 +128,12 @@ class LaporanController extends Controller
      */
     public function ditolak()
     {
-        $data = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
+        if(auth()->user()->level == 3){
+            $data = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
+        }else
+        if (auth()->user()->level == 4) {
+            $data = Laporan::where('validasi_dinsos', '=', '0')->orderBy('created_at', 'DESC')->get();
+        }
 
         return view('admin.laporan.data', [
             'title' => 'Laporan Ditolak',

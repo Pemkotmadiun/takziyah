@@ -15,6 +15,11 @@ Route::get('/laporan/diterima', 'LaporanController@diterima')->name('laporan.dit
 
 Route::get('/laporan/ditolak', 'LaporanController@ditolak')->name('laporan.ditolak');
 
+//Validasi Dinsos
+Route::get('/laporan/validasi/{dokumen}/{pengajuan_santunan}','ValidasiController@validasi')->name('dinsos.validasi');
+
+Route::post('/laporan/validasi','ValidasiController@store')->name('validasi.store');
+
 //Profil / Ubah Password
 Route::get('/profil', 'ProfilController@index')->name('profil.index');
 
