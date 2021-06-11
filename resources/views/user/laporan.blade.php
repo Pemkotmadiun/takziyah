@@ -164,6 +164,9 @@
                                             <td>
                                                 Surat Permohonan Santunan Kematian 
                                                 <a href="../../{{ $pengajuan->surat_permohonan_santunan }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_surat_permohonan_santunan == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_surat_permohonan_santunan }}</td>
                                             <td>
@@ -175,13 +178,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">surat_permohonan_santunan</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>
                                                 KTP-EL Masyarakat yang Meninggal 
                                                 <a href="../../{{ $pengajuan->ktp_masyarakat_meninggal }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_ktp_masyarakat_meninggal == '0')
                                                 <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_ktp_masyarakat_meninggal }}</td>
                                             <td>
@@ -193,12 +200,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">ktp_masyarakat_meninggal</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td>
                                                 Akta Kematian atau Surat Keterangan Lahir Mati 
                                                 <a href="../../{{ $pengajuan->akta_kematian }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_akta_kematian == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_akta_kematian }}</td>
                                             <td>
@@ -210,12 +222,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">akta_kematian</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td>
                                                 KTP-EL Ahli Waris 
                                                 <a href="../../{{ $pengajuan->ktp_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_ktp_ahli_waris == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_ktp_ahli_waris }}</td>
                                             <td>
@@ -227,12 +244,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">ktp_ahli_waris</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>5</td>
                                             <td>
                                                 KK Ahli Waris 
                                                 <a href="../../{{ $pengajuan->kk_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_kk_ahli_waris == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_kk_ahli_waris }}</td>
                                             <td>
@@ -244,12 +266,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">kk_ahli_waris</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>6</td>
                                             <td>
                                                 Surat Pernyataan Ahli Waris 
                                                 <a href="../../{{ $pengajuan->surat_pernyataan_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_surat_pernyataan_ahli_waris == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_surat_pernyataan_ahli_waris }}</td>
                                             <td>
@@ -261,12 +288,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">surat_pernyataan_ahli_waris</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>7</td>
                                             <td>
                                                 Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL 
                                                 <a href="../../{{ $pengajuan->akta_kelahiran_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_akta_kelahiran_ahli_waris == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_akta_kelahiran_ahli_waris }}</td>
                                             <td>
@@ -278,12 +310,17 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">akta_kelahiran_ahli_waris</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                         <tr>
                                             <td>8</td>
                                             <td>
                                                 Rekening Atas Nama Ahli Waris 
                                                 <a href="../../{{ $pengajuan->rekening_ahli_waris }}" target="_blank"><i class="fa fa-paperclip"> Dokumen</i>
+                                                @if($pengajuan->validasi_rekening_ahli_waris == '0')
+                                                <a style="color:orange"><i class="fa fa-edit"> Upload Ulang</i>
+                                                @endif
                                             </td>
                                             <td>{{ $pengajuan->keterangan_rekening_ahli_waris }}</td>
                                             <td>
@@ -295,6 +332,8 @@
                                                 <span class="badge badge-success">Diterima</span>
                                                 @endif
                                             </td>
+                                            <td style="display:none">rekening_ahli_waris</td>
+                                            <td style="display:none">{{ $pengajuan->laporan_id }}</td>
                                         </tr>
                                     </tbody>
                                     @endforeach
@@ -473,6 +512,23 @@
                         }
                     })
                 })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".fa.fa-edit").on('click',function(){
+                    var currentRow=$(this).closest("tr");
+                    var dok=currentRow.find("td:eq(4)").text();
+                    var id=currentRow.find("td:eq(5)").text();
+                    // console.log('id : '+id);
+                    var text = "#formValidasi"+dok;
+                    var konten = "#konten_detil"+dok;
+
+                    $(konten).empty();
+                    $(konten).load('{{ url('admin/laporan/validasi/')}}/'+dok+'/'+id);
+                    $(text).modal();
+                });
+            });
         </script>
 </body>
 

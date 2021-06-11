@@ -49,28 +49,28 @@ class ValidasiController extends Controller
             $status = 'Ditolak';
         }
 
-        if($request->dokumen = 'surat_permohonan_santunan'){
+        if($request->dokumen == 'surat_permohonan_santunan'){
             $jenis = 'Validasi Surat Permohonan Santunan Kematian : '.$status;
-        }else
-        if ($request->dokumen = 'ktp_masyarakat_meninggal') {
+        }
+        if ($request->dokumen == 'ktp_masyarakat_meninggal') {
             $jenis = 'Validasi KTP-EL Masyarakat yang Meninggal : '.$status;
-        }else
-        if ($request->dokumen = 'akta_kematian') {
-            $jenis = 'Validasi Akta Kematian atau Surat Keterangan Lahir Mati : ';
-        }else
-        if ($request->dokumen = 'ktp_ahli_waris') {
+        }
+        if ($request->dokumen == 'akta_kematian') {
+            $jenis = 'Validasi Akta Kematian atau Surat Keterangan Lahir Mati : '.$status;
+        }
+        if ($request->dokumen == 'ktp_ahli_waris') {
             $jenis = 'Validasi KTP-EL Ahli Waris : '.$status;
-        }else
-        if ($request->dokumen = 'kk_ahli_waris') {
+        }
+        if ($request->dokumen == 'kk_ahli_waris') {
             $jenis = 'Validasi KK Ahli Waris : '.$status;
-        }else
-        if ($request->dokumen = 'surat_pernyataan_ahli_waris') {
+        }
+        if ($request->dokumen == 'surat_pernyataan_ahli_waris') {
             $jenis = 'Validasi Surat Pernyataan Ahli Waris : '.$status;
-        }else
-        if ($request->dokumen = 'akta_kelahiran_ahli_waris') {
+        }
+        if ($request->dokumen == 'akta_kelahiran_ahli_waris') {
             $jenis = 'Validasi Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL : '.$status;
-        }else
-        if ($request->dokumen = 'rekening_ahli_waris') {
+        }
+        if ($request->dokumen == 'rekening_ahli_waris') {
             $jenis = 'Validasi Rekening Atas Nama Ahli Waris : '.$status;
         }
 

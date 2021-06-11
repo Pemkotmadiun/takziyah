@@ -33,6 +33,10 @@ Route::post('/pengajuan/santunan', 'LaporanController@santunan_store')->name('pe
 
 Route::delete('/pengajuan/santunan/{pengajuan}', 'LaporanController@santunan_destroy')->name('pengajuan.santunan_destroy');
 
+Route::get('/pengajuan/ulang/{dokumen}/{pengajuan_santunan}','LaporanController@ulang')->name('pengajuan.ulang');
+
+Route::post('/pengajuan/ulang','LaporanController@pengajuan_ulang_store')->name('pengajuan_ulang_store.store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
