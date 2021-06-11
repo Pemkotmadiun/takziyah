@@ -41,6 +41,8 @@
                                     <span class="badge badge-danger">Ditolak</span>
                                 @elseif($data->validasi_dukcapil == '1')
                                     <span class="badge badge-success">Diterima</span>
+                                @elseif($data->validasi_dukcapil == '2')
+                                    <span class="badge badge-warning">Diproses</span>
                                 @endif
                             </td>
                         </tr>

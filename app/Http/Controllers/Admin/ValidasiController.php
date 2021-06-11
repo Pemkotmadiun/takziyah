@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Pengajuan_santunan;
+use App\Laporan;
 use App\Log;
 
 class ValidasiController extends Controller
@@ -73,6 +74,8 @@ class ValidasiController extends Controller
         if ($request->dokumen == 'rekening_ahli_waris') {
             $jenis = 'Validasi Rekening Atas Nama Ahli Waris : '.$status;
         }
+
+        Laporan::where('id', $request->id)->update(['validasi_dinsos' => '2']);
 
         Log::create([
             'user_id' => auth()->user()->id,

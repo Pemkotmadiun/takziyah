@@ -71,7 +71,7 @@
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-content fade-in-up">
-                <div class="alert alert-warning"><b>Informasi,</b> untuk mengajukan santunan kematian, anda dapat melengkapi dokumen di form pengajuan santuan.
+                <!-- <div class="alert alert-warning"><b>Informasi,</b> untuk mengajukan santunan kematian, anda dapat melengkapi dokumen di form pengajuan santuan. -->
                 </div>
                 <div class="row">
                     @foreach($data as $data)
@@ -143,7 +143,7 @@
                             </div>
                             <div class="ibox-body">
                             @if(count($pengajuan) >= 1)
-                                <div class="alert alert-success alert-dismissable fade show">
+                                <div class="alert alert-warning alert-dismissable fade show">
                                     <h4>Pengajuan Santunan Berhasil !</h4>
                                     <p>Pengajuan santunan telah dilakukan, mohon tunggu untuk validasi dari OPD terkait. Informasi mengenai validasi dapat anda lihat pada form berikut pada tabel dibawah.</p>
                                 </div>
@@ -180,6 +180,14 @@
                                             </td>
                                             <td style="display:none">surat_permohonan_santunan</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasisurat_permohonan_santunan" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilsurat_permohonan_santunan">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>2</td>
@@ -202,6 +210,14 @@
                                             </td>
                                             <td style="display:none">ktp_masyarakat_meninggal</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasiktp_masyarakat_meninggal" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilktp_masyarakat_meninggal">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>3</td>
@@ -224,6 +240,14 @@
                                             </td>
                                             <td style="display:none">akta_kematian</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasiakta_kematian" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilakta_kematian">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>4</td>
@@ -246,6 +270,14 @@
                                             </td>
                                             <td style="display:none">ktp_ahli_waris</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasiktp_ahli_waris" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilktp_ahli_waris">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>5</td>
@@ -268,6 +300,14 @@
                                             </td>
                                             <td style="display:none">kk_ahli_waris</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasikk_ahli_waris" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilkk_ahli_waris">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>6</td>
@@ -290,6 +330,14 @@
                                             </td>
                                             <td style="display:none">surat_pernyataan_ahli_waris</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasisurat_pernyataan_ahli_waris" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilsurat_pernyataan_ahli_waris">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>7</td>
@@ -312,6 +360,14 @@
                                             </td>
                                             <td style="display:none">akta_kelahiran_ahli_waris</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasiakta_kelahiran_ahli_waris" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilakta_kelahiran_ahli_waris">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>8</td>
@@ -334,6 +390,14 @@
                                             </td>
                                             <td style="display:none">rekening_ahli_waris</td>
                                             <td style="display:none">{{ $pengajuan->laporan_id }}</td>
+
+                                            <div id="formValidasirekening_ahli_waris" class="modal fade text-center">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content" id="konten_detilrekening_ahli_waris">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                     @endforeach
@@ -525,7 +589,7 @@
                     var konten = "#konten_detil"+dok;
 
                     $(konten).empty();
-                    $(konten).load('{{ url('admin/laporan/validasi/')}}/'+dok+'/'+id);
+                    $(konten).load('{{ url('pengajuan/ulang/')}}/'+dok+'/'+id);
                     $(text).modal();
                 });
             });

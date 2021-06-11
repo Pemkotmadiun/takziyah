@@ -4,10 +4,10 @@
 
 <!-- Modal body -->
 <div class="modal-body" style="text-align: left;">
-    <form action="{{ route('admin.validasi.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.validasi.store') }}" method="POST">
         @csrf
-        <input class="form-control" type="text" id="id" name="id" value="{{ $id }}" style="display-:none">
-        <input class="form-control" type="text" id="dokumen" name="dokumen" value="{{ $dokumen }}" style="display-:none">
+        <input class="form-control" type="text" id="id" name="id" value="{{ $id }}" style="display:none">
+        <input class="form-control" type="text" id="dokumen" name="dokumen" value="{{ $dokumen }}" style="display:none">
         <div class="form-group">
             <label>Validasi</label>
             <select class="form-control" id="validasi" name="validasi">

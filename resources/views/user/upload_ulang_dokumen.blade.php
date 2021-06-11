@@ -4,21 +4,17 @@
 
 <!-- Modal body -->
 <div class="modal-body" style="text-align: left;">
-    <form action="{{ route('admin.validasi.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('pengajuan_ulang_store.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input class="form-control" type="text" id="id" name="id" value="{{ $id }}" style="display:none">
         <input class="form-control" type="text" id="dokumen" name="dokumen" value="{{ $dokumen }}" style="display:none">
         <div class="form-group">
-            <label>Validasi</label>
-            <select class="form-control" id="validasi" name="validasi">
-                <option value="1">Diterima</option>
-                <option value="0">Ditolak</option>
-            </select>
+            <input class="form-control" type="text" placeholder="Nama Pelapor" value="{{ $jenis }}" disabled>
         </div>
         <div class="form-group">
-            <label>Keterangan</label>
-            <textarea class="form-control" rows="5" id="keterangan" name="keterangan" placeholder="Keterangan"></textarea>
+            <label>Dokumen</label>
+            <input class="form-control" type="file" id="file_dokumen" name="file_dokumen">
         </div>
-        <button class="btn btn-info btn-block" id="simpan">Simpan Validasi</button>
+        <button class="btn btn-info btn-block" id="simpan">Simpan File</button>
     </form>
 </div>

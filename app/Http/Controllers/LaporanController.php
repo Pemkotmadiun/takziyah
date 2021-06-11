@@ -197,4 +197,107 @@ class LaporanController extends Controller
         $pengajuan->delete();
         return redirect()->route('laporan.show', $link);
     }
+
+    public function ulang(Request $request)
+    {
+        $dokumen = $request->dokumen;
+
+        $id = $request->pengajuan_santunan;
+        
+        if($dokumen == 'surat_permohonan_santunan'){
+            $jenis = 'Surat Permohonan Santunan Kematian';
+        }
+        if ($dokumen == 'ktp_masyarakat_meninggal') {
+            $jenis = 'KTP-EL Masyarakat yang Meninggal';
+        }
+        if ($dokumen == 'akta_kematian') {
+            $jenis = 'Akta Kematian atau Surat Keterangan Lahir Mati';
+        }
+        if ($dokumen == 'ktp_ahli_waris') {
+            $jenis = 'KTP-EL Ahli Waris';
+        }
+        if ($dokumen == 'kk_ahli_waris') {
+            $jenis = 'KK Ahli Waris';
+        }
+        if ($dokumen == 'surat_pernyataan_ahli_waris') {
+            $jenis = 'Surat Pernyataan Ahli Waris';
+        }
+        if ($dokumen == 'akta_kelahiran_ahli_waris') {
+            $jenis = 'Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL';
+        }
+        if ($dokumen == 'rekening_ahli_waris') {
+            $jenis = 'Rekening Atas Nama Ahli Waris';
+        }
+
+        return view('user.upload_ulang_dokumen', [
+            'jenis' => $jenis,
+            'dokumen' => $dokumen,
+            'id' => $id,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pengajuan_ulang_store(Request $request)
+    {
+        $laporan = Laporan::where('id', '=', $request->id)->get();
+
+        foreach ($laporan as $laporanx) {
+            $link = $laporanx->link;
+        }
+
+        $file_dokumen = "assets/dokumen/no-image-available.png";
+    
+        if ($request->hasFile('file_dokumen')) {
+            $file_dokumen = $request->file('file_dokumen')->store('assets/dokumen/'.$request->id.'/pengajuan');
+        }
+
+        $kolom_file = $request->dokumen;
+        $kolom_validasi = 'validasi_'.$request->dokumen;
+    
+        Pengajuan_santunan::where('laporan_id', $request->id)
+                          ->update(
+                                [
+                                    $kolom_file => $file_dokumen,
+                                    $kolom_validasi => '',
+                                ]
+                            );
+        
+        if($request->dokumen == 'surat_permohonan_santunan'){
+            $jenis = 'Upload Ulang Surat Permohonan Santunan Kematian';
+        }
+        if ($request->dokumen == 'ktp_masyarakat_meninggal') {
+            $jenis = 'Upload Ulang KTP-EL Masyarakat yang Meninggal';
+        }
+        if ($request->dokumen == 'akta_kematian') {
+            $jenis = 'Upload Ulang Akta Kematian atau Surat Keterangan Lahir Mati';
+        }
+        if ($request->dokumen == 'ktp_ahli_waris') {
+            $jenis = 'Upload Ulang KTP-EL Ahli Waris';
+        }
+        if ($request->dokumen == 'kk_ahli_waris') {
+            $jenis = 'Upload Ulang KK Ahli Waris';
+        }
+        if ($request->dokumen == 'surat_pernyataan_ahli_waris') {
+            $jenis = 'Upload Ulang Surat Pernyataan Ahli Waris';
+        }
+        if ($request->dokumen == 'akta_kelahiran_ahli_waris') {
+            $jenis = 'Upload Ulang Akta Kelahiran Bagi Ahli Waris yang Belum Memiliki KTP-EL';
+        }
+        if ($request->dokumen == 'rekening_ahli_waris') {
+            $jenis = 'Upload Ulang Rekening Atas Nama Ahli Waris';
+        }
+
+        Log::create([
+            'user_id' => '0',
+            'laporan_id' => $request->id,
+            'jenis' => $jenis,
+            'keterangan' => '',
+        ]);
+
+        return redirect()->route('laporan.show', $link);
+    }
 }
