@@ -8,6 +8,7 @@ use App\log;
 use App\Laporan;
 use App\Penerbitan;
 use App\Pengajuan_santunan;
+use Illuminate\Support\Facades\Mail;
 
 class LaporanController extends Controller
 {
@@ -63,6 +64,27 @@ class LaporanController extends Controller
             'laporan_id' => $laporan_id,
             'jenis' => 'Input Laporan Kematian',
         ]);
+
+        //Siapkan Data
+        $email = $request->alamat_email;
+        $data = array(
+                'email' => $email,
+                'name' => $request->nama_pelapor,
+                'email_body' => $request->email_body,
+                'link' => $shuffled,
+        );
+
+        // Kirim Email
+        Mail::send('email_template', $data, function($mail) use($email) {
+            $mail->to($email, 'no-reply')
+                    ->subject("Konfirmasi Laporan Takziyah Kota Madiun");
+            $mail->from('magang@madiunkota.go.id', 'Takziyah Kota Madiun');
+        });
+
+        // Cek kegagalan
+        if (Mail::failures()) {
+            return "Gagal mengirim Email";
+        }
 
         return redirect('/berhasil');
     }

@@ -73,8 +73,16 @@
                                 </div>
                             </div>
                             <div class="ibox-body">
-                                @if( empty($validasi_dukcapil))
-                                <form action="{{ route('admin.validasi.store') }}" method="POST" enctype="multipart/form-data">
+                                @if( $validasi_dukcapil == '0' )
+                                    <div class="alert alert-danger alert-dismissable fade show">
+                                        <h4>Sudah Divalidasi!</h4>
+                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Ditolak</b></p>
+                                        <p>
+                                            <b>Keterangan : </b>{{ $keterangan_validasi_dukcapil }}
+                                        </p>
+                                    </div>
+                                @elseif( empty($validasi_dukcapil))
+                                <form action="{{ route('admin.validasi_dukcapil.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="text" id="laporan_id" name="laporan_id" value="{{ $data->id }}" style="display:none">
                                     <input class="form-control" type="text" id="link" name="link" value="{{ $data->link }}" style="display:none">
@@ -118,15 +126,6 @@
                                     </div>
                                     <button class="btn btn-warning btn-block" style="display:none" id="display_simpan">Simpan Validasi</button>
                                 </form>
-
-                                @elseif( $validasi_dukcapil == '0' )
-                                    <div class="alert alert-warning alert-dismissable fade show">
-                                        <h4>Sudah Divalidasi!</h4>
-                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Ditolak</b></p>
-                                        <p>
-                                            <b>Keterangan : </b>{{ $keterangan_validasi_dukcapil }}
-                                        </p>
-                                    </div>
                                 @elseif( $validasi_dukcapil == '1' )
                                     <div class="alert alert-success alert-dismissable fade show">
                                     <h4>Sudah Divalidasi!</h4>

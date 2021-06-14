@@ -358,6 +358,8 @@
                   <input type="datetime-local" class="form-control" name="waktu_kematian" id="waktu_kematian" value="" />
                   <span><i style="color:red; font-size:12px;">* Waktu Kematian</i></span>
                 </div>
+
+                <input type="hidden" class="form-control" name="email_body" placeholder="Enter your message here..."></input>
                     
                 <div class="form-group">
                     <input type="submit" value="Kirim Laporan" class="btn btn-primary">

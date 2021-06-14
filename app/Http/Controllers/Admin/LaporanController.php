@@ -9,6 +9,7 @@ use App\Laporan;
 use App\Kelurahan;
 use App\Penerbitan;
 use App\Pengajuan_santunan;
+use Illuminate\Support\Facades\Mail;
 
 class LaporanController extends Controller
 {
@@ -180,27 +181,61 @@ class LaporanController extends Controller
                 'kk' => $kk,
             ]);
 
+            $jenis = 'Validasi Dukcapil : Diterima';
+            $keterangan = 'Akte Kematian Diterbitkan';
             Log::create([
                 'user_id' => $user_id,
                 'laporan_id' => $request->laporan_id,
-                'jenis' => 'Validasi Dukcapil : Diterima',
+                'jenis' => $jenis,
                 'keterangan' => 'Akte Kematian Diterbitkan',
             ]);
 
-            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '1']);
+            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '1', 'keterangan_validasi_dukcapil' => 'Akte Kematian Diterbitkan']);
         }else
         if($request->validasi == 'Tidak Valid'){
+            $jenis = 'Validasi Dukcapil : Ditolak';
+            $keterangan = $request->keterangan;
             Log::create([
                 'user_id' => $user_id,
                 'laporan_id' => $request->laporan_id,
-                'jenis' => 'Validasi Dukcapil : Ditolak',
-                'keterangan' => $request->keterangan,
+                'jenis' => $jenis,
+                'keterangan' => $keterangan,
             ]);
 
             date_default_timezone_set("Asia/Jakarta");
             $waktu_validasi = date("Y-m-d H:i:s");
 
-            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '0', 'waktu_validasi_dukcapil' => $waktu_validasi]);
+            Laporan::where('id', $request->laporan_id)->update(['validasi_dukcapil' => '0', 'keterangan_validasi_dukcapil' => $keterangan, 'waktu_validasi_dukcapil' => $waktu_validasi]);
+        }
+
+        //======================== Kirim Email Informasi Validasi Dukcapil ========================//
+        $laporan = Laporan::where('id', '=', $request->laporan_id)->get();
+
+        foreach ($laporan as $laporan) {
+            $email = $laporan->alamat_email;
+            $name = $laporan->nama_pelapor;
+            $link = $laporan->link;
+        }
+
+        //Siapkan Data
+        $data = array(
+            'email' => $email,
+            'name' => $name,
+            'link' => $link,
+            'jenis' => $jenis,
+            'keterangan' => $keterangan,
+        );
+
+        // Kirim Email
+        Mail::send('email_validasi_dukcapil', $data, function($mail) use($email) {
+            $mail->to($email, 'no-reply')
+                    ->subject("Validasi Dinas Kependudukan dan Pencatatan Sipil Kota Madiun");
+            $mail->from('magang@madiunkota.go.id', 'Takziyah Kota Madiun');
+        });
+
+        // Cek kegagalan
+        if (Mail::failures()) {
+            return "Gagal mengirim Email";
         }
 
         return redirect()->route('admin.laporan.show', $request->laporan_id);

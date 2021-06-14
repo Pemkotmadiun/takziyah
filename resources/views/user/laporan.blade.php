@@ -89,6 +89,15 @@
                                 </div>
                             </div>
                             <div class="ibox-body">
+                                @if( $data->validasi_dukcapil == '0' )
+                                    <div class="alert alert-danger alert-dismissable fade show">
+                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Ditolak</b>, {{ $data->keterangan_validasi_dukcapil }}</p>
+                                    </div>
+                                @elseif( $data->validasi_dukcapil == '1' )
+                                    <div class="alert alert-success alert-dismissable fade show">
+                                        <p>Laporan berikut telah divalidasi dengan hasil validasi : <b>Diterima, {{ $data->keterangan_validasi_dukcapil }}</b></p>
+                                    </div>
+                                @endif
                                 <form>
                                     <div class="form-group">
                                         <label>Nama Pelapor</label>
@@ -514,6 +523,12 @@
                             </div>
                                 <table class="table table-bordered">
                                     <tbody>
+                                        <tr>
+                                            <th style="background-color:#eeeeee">User</th>
+                                            <th style="background-color:#eeeeee">Jenis</th>
+                                            <th style="background-color:#eeeeee">Keterangan</th>
+                                            <th style="background-color:#eeeeee">Waktu</th>
+                                        </tr>
                                         @foreach($log as $log)
                                         <tr>
                                             <td width="21%">

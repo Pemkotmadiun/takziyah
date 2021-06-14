@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/landing/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/landing/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="icon">
+  <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -85,7 +85,8 @@
       <div class="carousel-item active">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Terima Kasih</h2>
-          <p class="animate__animated animate__fadeInUp">Terima kasih atas laporan anda, mohon ditunggu kami akan menindaklanjuti laporan anda secepat mungkin, proses dari laporan yang anda buat dapat anda lihat melalui link yang dikirimkan ke email terdaftar. Silahkan hubungi kontak diatas jika ada perlu ditanyakan.</p>
+          <p class="animate__animated animate__fadeInUp">Terima kasih atas laporan anda, mohon tunggu kami akan menindaklanjuti laporan anda secepat mungkin, progres dari laporan yang anda buat dapat anda lihat melalui link yang dikirimkan ke email terdaftar. </br>Mohon jaga kerahasiaan informasi dengan tidak membagikan atau menunjukkan link yang dikirimkan ke email anda. Mohon hubungi contact person diatas jika anda mengalami kendala atau perlu penjelasan lain.
+          </br>Jika email tidak ditemukan mohon lakukan pengecekan di menu spam.</p>
           <a href="{{ route('landing.index') }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Kembali</a>
         </div>
       </div>

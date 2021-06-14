@@ -5,7 +5,7 @@ Route::get('/', 'HomeController@index')->name('dashboard');
 //Laporan
 Route::get('/laporan/{laporan}/show/', 'LaporanController@show')->name('laporan.show');
 
-Route::post('/laporan/validasi', 'LaporanController@validasi_store')->name('validasi.store');
+Route::post('/laporan/validasi_dukcapil', 'LaporanController@validasi_store')->name('validasi_dukcapil.store');
 
 Route::get('/laporan/keseluruhan', 'LaporanController@keseluruhan')->name('laporan.keseluruhan');
 

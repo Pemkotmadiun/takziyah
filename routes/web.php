@@ -39,4 +39,4 @@ Route::post('/pengajuan/ulang','LaporanController@pengajuan_ulang_store')->name(
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'Admin\HomeController@index')->name('home')->middleware('verified');
