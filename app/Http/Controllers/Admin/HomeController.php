@@ -22,7 +22,7 @@ class HomeController extends Controller
             $diterima = Laporan::join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->select('laporans.*')->where('laporans.validasi_dinsos', '=', '1')->orderBy('laporans.created_at', 'DESC')->get();
         }
         
-        return view('Admin.home', [
+        return view('admin.home', [
             'title' => 'Dashboard',
             'total' => $total,
             'baru' => $baru,
