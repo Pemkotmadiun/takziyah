@@ -25,6 +25,13 @@
                             <span class="nav-label">Baru</span>
                         </a>
                     </li>
+                    @if(auth()->user()->level == 4)
+                    <li class="{{ Request::is('*laporan/diproses*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.laporan.diproses') }}"><i class="sidebar-item-icon fa fa-file-text"></i>
+                            <span class="nav-label">Diproses</span>
+                        </a>
+                    </li>
+                    @endif
                     <li class="{{ Request::is('*laporan/diterima*') ? 'active' : '' }}">
                         <a href="{{ route('admin.laporan.diterima') }}"><i class="sidebar-item-icon fa fa-table"></i>
                             <span class="nav-label">Diterima</span>

@@ -11,6 +11,8 @@ Route::get('/laporan/keseluruhan', 'LaporanController@keseluruhan')->name('lapor
 
 Route::get('/laporan/baru', 'LaporanController@baru')->name('laporan.baru');
 
+Route::get('/laporan/diproses', 'LaporanController@diproses')->name('laporan.diproses');
+
 Route::get('/laporan/diterima', 'LaporanController@diterima')->name('laporan.diterima');
 
 Route::get('/laporan/ditolak', 'LaporanController@ditolak')->name('laporan.ditolak');

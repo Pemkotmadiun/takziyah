@@ -320,6 +320,8 @@ class LaporanController extends Controller
             'keterangan' => '',
         ]);
 
+        Laporan::where('id', '=', $request->id)->update(['validasi_dinsos' => NULL]);
+
         return redirect()->route('laporan.show', $link);
     }
 }

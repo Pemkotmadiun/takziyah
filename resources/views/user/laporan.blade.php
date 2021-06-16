@@ -155,10 +155,22 @@
                             </div>
                             <div class="ibox-body">
                             @if(count($pengajuan) >= 1)
-                                <div class="alert alert-warning alert-dismissable fade show">
-                                    <h4>Pengajuan Santunan Berhasil !</h4>
-                                    <p>Pengajuan santunan telah dilakukan, mohon tunggu untuk validasi dari OPD terkait. Informasi mengenai validasi dapat anda lihat pada form berikut pada tabel dibawah.</p>
-                                </div>
+                                @if(empty($data->validasi_dinsos))
+                                    <div class="alert alert-warning alert-dismissable fade show">
+                                        <h4>Pengajuan Santunan Berhasil !</h4>
+                                        <p>Pengajuan santunan telah dilakukan, mohon tunggu untuk validasi dari OPD terkait. Informasi mengenai validasi dapat anda lihat pada form berikut pada tabel dibawah.</p>
+                                    </div>
+                                @elseif($data->validasi_dinsos == 1)
+                                    <div class="alert alert-success alert-dismissable fade show">
+                                        <h4>Pengajuan Santunan Diterima !</h4>
+                                        <p>Pengajuan santunan telah divalidasi dengan hasil diterima, silahkan datang ke Dinas Sosial, PP dan PA Kota Madiun dengan membawa dokumen persayaratan.</p>
+                                    </div>
+                                @elseif($data->validasi_dinsos == 0)
+                                    <div class="alert alert-danger alert-dismissable fade show">
+                                        <h4>Pengajuan Santunan Ditolak !</h4>
+                                        <p>Pengajuan santunan telah divalidasi dengan hasil ditolak, mohon upload kembali dokumen yang ditolak dengan benar.</p>
+                                    </div>
+                                @endif
 
                                 <table class="table table-bordered">
                                     @foreach($pengajuan as $pengajuan)

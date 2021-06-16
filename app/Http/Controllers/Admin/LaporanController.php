@@ -106,6 +106,21 @@ class LaporanController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function diproses()
+    {
+        $data = Laporan::select('laporans.id', 'laporans.nama_pelapor', 'laporans.alamat_email', 'laporans.no_telepon', 'laporans.nama_meninggal', 'laporans.keterangan', 'laporans.created_at', 'laporans.status', 'laporans.waktu_kematian', 'laporans.validasi_dinsos AS validasi', 'laporans.link')->join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->where('laporans.validasi_dinsos', '=', '2')->orderBy('laporans.created_at', 'DESC')->get();
+
+        return view('admin.laporan.data', [
+            'title' => 'Laporan Diproses',
+            'data' => $data,
+        ]);
+    }
+
      /**
      * Display a listing of the resource.
      *

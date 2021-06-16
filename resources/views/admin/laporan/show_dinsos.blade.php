@@ -377,6 +377,12 @@
                             </div>
                                 <table class="table table-bordered">
                                     <tbody>
+                                        <tr>
+                                            <th style="background-color:#eeeeee">User</th>
+                                            <th style="background-color:#eeeeee">Jenis</th>
+                                            <th style="background-color:#eeeeee">Keterangan</th>
+                                            <th style="background-color:#eeeeee">Waktu</th>
+                                        </tr>
                                         @foreach($log as $log)
                                         <tr>
                                             <td width="21%">
