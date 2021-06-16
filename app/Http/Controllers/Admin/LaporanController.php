@@ -74,7 +74,11 @@ class LaporanController extends Controller
      */
     public function keseluruhan()
     {
-        $data = Laporan::orderBy('created_at', 'DESC')->get();
+        if(auth()->user()->level == 3){
+            $data = Laporan::select('id', 'nama_pelapor', 'alamat_email', 'no_telepon', 'nama_meninggal', 'keterangan', 'created_at', 'status', 'waktu_kematian', 'validasi_dukcapil AS validasi', 'link')->orderBy('created_at', 'DESC')->get();
+        }elseif (auth()->user()->level == 4) {
+            $data = Laporan::select('laporans.id', 'laporans.nama_pelapor', 'laporans.alamat_email', 'laporans.no_telepon', 'laporans.nama_meninggal', 'laporans.keterangan', 'laporans.created_at', 'laporans.status', 'laporans.waktu_kematian', 'laporans.validasi_dinsos AS validasi', 'laporans.link')->join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->get();
+        }
 
         return view('admin.laporan.data', [
             'title' => 'Laporan Keseluruhan',
@@ -90,10 +94,10 @@ class LaporanController extends Controller
     public function baru()
     {
         if(auth()->user()->level == 3){
-            $data = Laporan::whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('id', 'nama_pelapor', 'alamat_email', 'no_telepon', 'nama_meninggal', 'keterangan', 'created_at', 'status', 'waktu_kematian', 'validasi_dukcapil AS validasi', 'link')->whereNull('validasi_dukcapil')->orderBy('created_at', 'DESC')->get();
         }else
         if (auth()->user()->level == 4) {
-            $data = Laporan::whereNull('validasi_dinsos')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('laporans.id', 'laporans.nama_pelapor', 'laporans.alamat_email', 'laporans.no_telepon', 'laporans.nama_meninggal', 'laporans.keterangan', 'laporans.created_at', 'laporans.status', 'laporans.waktu_kematian', 'laporans.validasi_dinsos AS validasi', 'laporans.link')->join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->whereNull('laporans.validasi_dinsos')->orderBy('laporans.created_at', 'DESC')->get();
         }
 
         return view('admin.laporan.data', [
@@ -110,10 +114,10 @@ class LaporanController extends Controller
     public function diterima()
     {
         if(auth()->user()->level == 3){
-            $data = Laporan::where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('id', 'nama_pelapor', 'alamat_email', 'no_telepon', 'nama_meninggal', 'keterangan', 'created_at', 'status', 'waktu_kematian', 'validasi_dukcapil AS validasi', 'link')->where('validasi_dukcapil', '=', '1')->orderBy('created_at', 'DESC')->get();
         }else
         if (auth()->user()->level == 4) {
-            $data = Laporan::where('validasi_dinsos', '=', '1')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('laporans.id', 'laporans.nama_pelapor', 'laporans.alamat_email', 'laporans.no_telepon', 'laporans.nama_meninggal', 'laporans.keterangan', 'laporans.created_at', 'laporans.status', 'laporans.waktu_kematian', 'laporans.validasi_dinsos AS validasi', 'laporans.link')->join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->where('laporans.validasi_dinsos', '=', '1')->orderBy('laporans.created_at', 'DESC')->get();
         }
 
         return view('admin.laporan.data', [
@@ -130,10 +134,10 @@ class LaporanController extends Controller
     public function ditolak()
     {
         if(auth()->user()->level == 3){
-            $data = Laporan::where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('id', 'nama_pelapor', 'alamat_email', 'no_telepon', 'nama_meninggal', 'keterangan', 'created_at', 'status', 'waktu_kematian', 'validasi_dukcapil AS validasi', 'link')->where('validasi_dukcapil', '=', '0')->orderBy('created_at', 'DESC')->get();
         }else
         if (auth()->user()->level == 4) {
-            $data = Laporan::where('validasi_dinsos', '=', '0')->orderBy('created_at', 'DESC')->get();
+            $data = Laporan::select('laporans.id', 'laporans.nama_pelapor', 'laporans.alamat_email', 'laporans.no_telepon', 'laporans.nama_meninggal', 'laporans.keterangan', 'laporans.created_at', 'laporans.status', 'laporans.waktu_kematian', 'laporans.validasi_dinsos AS validasi', 'laporans.link')->join('pengajuan_santunans', 'pengajuan_santunans.laporan_id', '=', 'laporans.id')->where('laporans.validasi_dinsos', '=', '0')->orderBy('created_at', 'DESC')->get();
         }
 
         return view('admin.laporan.data', [

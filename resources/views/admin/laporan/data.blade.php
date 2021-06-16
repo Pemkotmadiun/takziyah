@@ -35,13 +35,13 @@
                             <td>{{ $data->nama_meninggal }}</td>
                             <td>{{ $data->created_at }}</td>
                             <td>
-                                @if(empty($data->validasi_dukcapil))
-                                    <span class="badge badge-info">Baru</span>
-                                @elseif($data->validasi_dukcapil == '0')
+                                @if($data->validasi == '0')
                                     <span class="badge badge-danger">Ditolak</span>
-                                @elseif($data->validasi_dukcapil == '1')
+                                @elseif(empty($data->validasi))
+                                    <span class="badge badge-info">Baru</span>
+                                @elseif($data->validasi == '1')
                                     <span class="badge badge-success">Diterima</span>
-                                @elseif($data->validasi_dukcapil == '2')
+                                @elseif($data->validasi == '2')
                                     <span class="badge badge-warning">Diproses</span>
                                 @endif
                             </td>

@@ -14,6 +14,9 @@
     <link href="{{ asset('assets/admin/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="{{ asset('assets/admin/assets/css/main.min.css') }}" rel="stylesheet" />
+    <!-- Favicons -->
+    <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="icon">
+    <link href="{{ asset('assets/landing/assets/img/Kota-Madiun.png') }}" rel="apple-touch-icon">
     <!-- PAGE LEVEL STYLES-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
